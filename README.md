@@ -52,3 +52,14 @@ Now the sleep app should be able to communicate with httpbin. To verify run
 ```bash
 kubectl -n sleep-ns exec deploy/sleep -- curl -si http://httpbin.httpbin-ns.svc.cluster.local:8000/status/200
 ```
+
+## Cleanup
+
+```bash
+kubectl delete -f networkpolicy-grant.yaml
+kubectl delete -f networkpolicy-default-deny.yaml
+kubectl delete -f httpbin.yaml
+kubectl delete -f sleep.yaml
+minikube delete --purge --all
+```
+
