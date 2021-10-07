@@ -1,46 +1,6 @@
 ############################################
 # Network policies
 ############################################
-# Default deny policy for httpbin-ns namespace, only allow DNS lookups
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: default-deny-httpbin-ns
-  namespace: httpbin-ns
-spec:
-  podSelector:
-    matchLabels: {}
-  policyTypes:
-  - Ingress
-  - Egress
-  egress:
-  - to:
-    ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53  
----
-# Default deny policy for sleep-ns namespace, only allow DNS lookups
-kind: NetworkPolicy
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: default-deny-sleep-ns
-  namespace: sleep-ns
-spec:
-  podSelector:
-    matchLabels: {}
-  policyTypes:
-  - Ingress
-  - Egress
-  egress:
-  - to:
-    ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53
----
 # Grant ingress communication to httpbin from sleep
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
